@@ -1,0 +1,210 @@
+metadata:
+  title: Lonely Cobwebs
+  author: Akash Chaudhary
+  email: achaud10@ucsc.edu
+
+initially:
+  description: >
+    You live alone most of the time in a big house.
+    Your husband, Derik, is still out at work, it's gotten pretty late. You are used to it
+    though, he likes burning the midnight oil.
+  location: outside
+  inventory: [patience]
+  
+
+locations:
+
+  outside:
+  
+    descriptions:
+      - text: The doorbell rings. You go outside to check.
+        tags: [lit]
+
+      - text: No one is there. You look around and turn back inside the house to find Peter, your husband's colleague inside the house.
+
+      - text: Peter - "Oh, I am sorry. I forgot to ask if I can come in. (Handing over bouquet) I was just passing by, I thought I should say hello. This bouquet is for you!"
+        tags: [slant]
+
+    choices:
+      - text: Allow him in
+        target: living_room_normal
+        narration: You are a bit hesitant but still allow him to enter. Both proceed toward the living room.
+        with: [patience]
+        tags: [green]
+        
+  living_room_normal:
+    
+    descriptions:
+      - text: Peter - "Thanks! I was just passing by, I thought I should say Hi.""
+        tags: [slant]
+        without: [playfulness, calm]
+        with: [patience]
+
+      - text: You - That's alright. I remember we met at the last Christmas party. How have you been?
+        tags: [slant]
+        without: [playfulness, calm]
+        with: [patience]
+
+      - text: Peter - I have been good. Thank you. Damn, I am really tired. Where is Derik?
+        tags: [slant]
+        without: [playfulness, calm]
+        with: [patience]
+
+      - text: You - Oh I thought you guys were together at the workplace, putting in some mean late night shifts.
+        tags: [slant]
+        without: [playfulness, calm]
+        with: [patience]
+        
+      - text: Peter - Not really, we logged out some time back. I thought Derik would be here. But I guess its alright. Damn, I am really tired. Can I get something to drink, maybe?
+        tags: [slant]
+        without: [playfulness, calm]
+        with: [patience]
+        
+      - text: You - "You can leave when your coffee finishes."
+        tags: [slant]
+        with: [calm]
+        
+      - text: Peter - "I am sorry, can I sober up with a coffee?"
+        tags: [slant]
+        with: [playfulness]
+        
+        
+    choices:
+      - text: Offer wine.
+        target: get_wine
+        narration: You get a glass for Derik and a bottle of wine.
+        without: [playfulness, calm]
+
+      - text: Offer coffee.
+        target: get_coffee
+        narration: You make two cups of hot coffee.
+        without: [calm]
+
+        
+      - text: Offer nothing.
+        narration: You get irritated. Peter's taking too much liberty and getting too comfortable.
+        target: get_nothing
+        tags: [red]
+        without: [playfulness]
+        
+        
+  get_wine:
+  
+    provides: [playfulness]
+  
+    descriptions:
+      - text: Peter - "Oh, so you aren't gonna share a glass of wine with me"
+        tags: [slant]
+      
+      - text: You - (Smilingly) "Well, I shouldn't. It's really late. You should please go ahead."
+        tags: [slant]
+      
+      - text: Peter - (Pours a glass) "Well, alright. Thanks!"
+        tags: [slant]
+      
+      - text: Peter - Takes in a sip and smiles) "Well I have to say, its a good wine and you look really beautiful!"
+        tags: [slant]
+      
+    choices:
+      - text: Come close to Peter!
+        narration: Enjoying the good conversation, you go and sit near Peter. You start having intimate conversations.
+        target: get_intimate
+        tags: [red]
+        
+      - text: Resist him!
+        narration: You maintain your distance, and let him know that you don't like so much attention.
+        target: living_room_normal
+        tags: [lit]
+        
+  get_coffee:
+  
+    consumes: [playfulness]
+  
+    provides: [calm]
+      
+    descriptions:
+      - text: You - "Here you go. Hot coffee for you!"
+        tags: [slant]
+      
+      - text: Peter - (Takes the coffe and takes a sip ) "Thank you so much. I feel much more relaxed. So, how are things going with Derik?"
+        tags: [slant]
+        
+      - text: You - (Hesitantly) "Pretty good."
+        tags: [slant]
+        
+      - text: Peter - "Well, you don't need to hide it from me. Derik's been acting weird lately. He is usually out with Rebecca after office hours."
+        tags: [slant]
+        
+      - text: You - (Starts crying) "There's nothing to share. How didn't I see through it"
+        tags: [slant]
+        
+    choices:
+      - text: Look at Peter!
+        narration: Peter comes near you and tries to console you.
+        target: get_intimate
+        tags: [red]
+      
+      - text: Look away!
+        narration: Both you and Peter finish their coffees.
+        target: living_room_normal
+        tags: [lit]
+        without: [playfulness]
+        
+  get_nothing:
+  
+    consumes: [patience]
+      
+    descriptions:
+      - text: You - "Please leave. I know where you are leading with this. It's too late, I have to sleep."
+        tags: [slant]
+        
+      - text: Peter - (Comes close to you) "This is leading nowhere, trust me."
+        tags: [slant]
+        
+      - text: You push him away and break the bottle of water kept on the table on his head.
+      
+    choices:
+      - text: Kill him
+        narration: He falls on the floor.
+        target: kill_him
+        tags: [red]
+        
+      - text: Give him warning
+        narration: You shout at him and warn him for the last time. Peter gets up and sits on the chair.
+        target: living_room_normal
+        tags: [lit]
+        without: [calm, playfulness]
+        
+  get_intimate:
+      
+    descriptions:
+      - text: Peter tries getting intimate with you. You realize that was the actual reason why he is here.
+      
+      - text: But Peter is not the only one with hidden motives.
+        tags: [lit]
+        
+      - text: You suddenly push him and break the wine bottle on his head.
+        with: [playfulness]
+      
+      - text: You suddenly push him and break the coffee mugs on his head.
+        with: [calm]
+      
+    choices:
+      - text: Kill him
+        narration: You hit him again and drag him down the basement.
+        target: kill_him
+        tags: [red]
+        
+  kill_him:
+      
+    descriptions:
+      - text: Peter - (Begging) "Please leave me Emily. I am sorry."
+        tags: [slant]
+      
+      - text: Emily - (Evil laugh) "You made my day. I needed someone so bad."
+        tags: [slant]
+        
+      - text: Peter was just one of the many victims that you have killed as a serial killer.
+        tags: [red]
+      
+        
